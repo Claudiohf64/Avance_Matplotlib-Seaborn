@@ -12,8 +12,6 @@ productos=pd.DataFrame({
     'stock':[100,100,100,100,50,50],
     'id_categoria':[1,1,1,2,3,3]
 })
-
-reporte1 = pd.merge(categorias,productos,on='id_categoria',how='inner')
-conteo=reporte1.groupby('nombre_categoria')['stock'].sum()
-plt.plot(conteo.values,conteo.index,color='red',marker='')
-plt.show()
+reporte1=pd.merge(productos,categorias,on='id_categoria',how='inner')
+reporte2=reporte1.query('stock<100')
+print(reporte2)
