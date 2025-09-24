@@ -16,9 +16,9 @@ print(escuela)
 print("---Carreras---")
 print(carrera)
 reporte1 = pd.merge(carrera, escuela, on="id_escuela", how="inner")
-# SELECT c.nombre,e.nombre FROM carrera c INNER JOIN escuela e ON e.id=c.id_escuela GROUP BY e.nombre
 print(reporte1)
 conteo=reporte1.groupby('nombre_escuela')['id_escuela'].count()
 print(conteo)
 plt.bar(conteo.index, conteo.values)
 plt.show()
+

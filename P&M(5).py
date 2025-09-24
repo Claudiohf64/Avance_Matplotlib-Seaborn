@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 categorias=pd.DataFrame({
     'id_categoria':[1,2,3],
@@ -13,5 +14,7 @@ productos=pd.DataFrame({
     'id_categoria':[1,1,1,2,3,3]
 })
 reporte1=pd.merge(productos,categorias,on='id_categoria',how='inner')
-reporte2=reporte1.query('stock<100')
-print(reporte2)
+conteo= reporte1.groupby('id_categoria')['stock'].sum()
+plt.bar(conteo.index,conteo.values)
+plt.show()
+

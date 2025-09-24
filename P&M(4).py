@@ -17,3 +17,5 @@ reporte1 = pd.merge(categorias,productos,on='id_categoria',how='inner')
 conteo=reporte1.groupby('nombre_categoria')['stock'].sum()
 plt.plot(conteo.values,conteo.index,color='red',marker='')
 plt.show()
+
+
