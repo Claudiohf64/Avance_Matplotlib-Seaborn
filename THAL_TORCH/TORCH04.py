@@ -32,3 +32,4 @@ for epoch in range (1000):
 with torch.no_grad():
     y_pred = model(torch.tensor([[-20.],[-5.],[2.],[8.],[2.],[10.],[0.],]))
     print(y_pred.round())
+

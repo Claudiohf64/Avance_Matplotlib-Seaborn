@@ -33,3 +33,5 @@ for epoch in range (1000):
 with torch.no_grad():
     y_pred = model(x)
     print(y_pred.round())
+
+    

@@ -46,3 +46,5 @@ with torch.no_grad():
     i,y_pred = torch.max(salida,1)
     print(y_pred)
     print(iris.target_names[y_pred])
+
+

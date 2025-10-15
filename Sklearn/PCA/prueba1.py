@@ -1,11 +1,25 @@
-# * Reduccion de la dimensionalidad 
-from sklearn.decomposition import PCA #analizis de componentes principales
+import tensorflow as tf
 import numpy as np
-x = np.array([[2,2],[3,3],[4,4]])
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
 
-#Indica con cuantas columnas se va a quedar y en n_components se le indica con cuantos componentes se va a trabajar
-model=PCA(n_components=1)
+iris = load_iris()
 
-x_reduced=model.inverse_transform(x)
-print(model)
+x = iris.data
+y = iris.target
 
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=42)
+
+model = tf.keras.Sequential(
+    [
+        tf.keras.layers.Dense(10, activation='relu', input_shape=(4,)),
+        tf.keras.layers.Dense(8, activation='relu'),
+        tf.keras.layers.Dense(3,activation='softmax')
+    ]
+)
+
+model.compile(optimizer='adam',loss='sparse_categorical_crossentropy')
+model.fit(x_train,y_train,epochs=50)
+y_pred=model.predict(x_test[0].reshape(1,-1))
+salida=np.argmax(y_pred,1)
+print(salida,iris.target_names[salida])

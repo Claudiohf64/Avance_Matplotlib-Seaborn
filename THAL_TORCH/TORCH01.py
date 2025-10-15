@@ -39,3 +39,6 @@ with torch.no_grad():
     y_pred = model(torch.tensor([[15.]]))
     print(y_pred)
 print(x,y,model)
+
+
+
