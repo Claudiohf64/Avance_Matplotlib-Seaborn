@@ -1,0 +1,18 @@
+import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread('gato2.jpeg')
+cv2.imshow('Imagen Original (BGR)', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+plt.imshow(img_rgb)
+plt.title('Imagen Original (RGB)')
+plt.axis('off')
+plt.show()
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+plt.imshow(gray, cmap='gray')
+plt.title('Imagen en escala de grises')
+plt.axis('off')
+plt.show()
+cv2.imwrite('imagen_gris.jpg', gray)
+print("Dimensiones de la imagen:", img.shape)
