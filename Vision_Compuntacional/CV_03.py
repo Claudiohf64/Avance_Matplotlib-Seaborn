@@ -5,7 +5,7 @@ face_cascade = cv2.CascadeClassifier(
 )
 eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_eye.xml")
 mouth_cascade=cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_smile.xml")
-cap = cv2.VideoCapture("smile.mp4")
+cap = cv2.VideoCapture(0)
 while True:
     ret, frame = cap.read()
     if not ret:
