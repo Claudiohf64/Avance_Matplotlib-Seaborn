@@ -1,0 +1,32 @@
+import java.util.Arrays;
+
+public class Ejercicio5 {
+	static void verArray(int[][] valores, int i) {
+		if (i==valores.length) {
+			return;
+		}
+		System.out.println(valores[i]);
+		verArray(valores, i+1);
+	}
+	
+	static void verArray2(int[] valores, int[] valores1, int i) {
+		if (i==valores.length) {
+			return;
+		}
+		if (i==valores1.length) {
+			return;
+		}
+		System.out.println(valores[i]);
+		System.out.println(valores1[i]);
+		verArray2(valores,valores1, i+1);
+	}
+	
+	public static void main(String[] args) {
+		
+		int[] valores= {1,2,3,4,5};
+		int[] valores1= {1,2,3,4,5};
+		verArray2(valores,valores1, 0);
+	}
+	
+
+}

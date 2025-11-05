@@ -1,0 +1,37 @@
+
+public class Ejercicio4 {
+	
+	static int sumarHastaRecursivo(int numero) {
+		if (numero== 0) {
+			return 0;
+		}
+		
+		int suma = numero + sumarHastaRecursivo(numero-1);
+		
+		return suma;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(sumarHastaRecursivo(15));
+	}
+
+	static int sumarHastaRecursivo2(int numero) {
+		if (numero== 0) {
+			return 0;
+		}
+		sumarHastaRecursivo(numero-1);
+		for (int i = 0; i<= numero;i++) {
+			sumarHastaRecursivo(numero-1);
+			
+			if ()
+		}
+		
+		int suma = numero + sumarHastaRecursivo(numero-1);
+		
+		return suma;
+	}
+
+	public static void main2(String[] args) {
+		System.out.println(sumarHastaRecursivo(15));
+	}
+}

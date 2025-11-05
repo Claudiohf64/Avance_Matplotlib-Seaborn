@@ -1,0 +1,15 @@
+
+public class Ejercicio2 {
+	static void decrementarRecursivo(int numero) {
+		if (numero == 0) {
+			return;
+		}
+		else {
+			decrementarRecursivo(numero);
+		}
+	}
+	
+	public static void main(String[] args) {
+		decrementarRecursivo(5);
+	}
+}

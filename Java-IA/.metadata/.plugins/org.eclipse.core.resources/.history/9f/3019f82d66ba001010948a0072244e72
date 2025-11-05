@@ -1,0 +1,11 @@
+
+public class Ejercicio5 {
+	static void verArray(int[] valores) {
+		
+		return null;
+	}
+	public static void main(String[] args) {
+		
+	}
+
+}

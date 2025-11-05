@@ -1,0 +1,12 @@
+
+public class Node {
+	int valor;
+	Noo izquierdo;
+	Noo derecho;
+	public Node(int valor) {
+		this.valor=valor;
+		this.izquierdo=null;
+		this.derecho=null;
+		
+	}
+}

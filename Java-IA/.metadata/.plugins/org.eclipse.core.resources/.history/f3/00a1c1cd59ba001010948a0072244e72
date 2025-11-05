@@ -1,0 +1,11 @@
+
+public class Ejercicio3 {
+
+	public static void main(String[] args) {
+		Stack<String> pila = new Stack<String>();
+		pila.push("A");
+		pila.push("B");
+		pila.push("C");
+	}
+
+}

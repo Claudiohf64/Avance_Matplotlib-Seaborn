@@ -1,0 +1,20 @@
+
+public class Ejercicio3 {
+
+	public static void main(String[] args) {
+		Stack<String> pila = new Stack<String>();
+		pila.push("A");
+		pila.push("B");
+		pila.push("C");
+		System.out.println("REPORTE 1");
+		for (String alu : pila) {
+			System.out.println(alu);
+		}
+		pila.pop();
+		System.out.println("REPORTE 2");
+		for (String alu : pila) {
+			System.out.println(alu);
+		}
+	}
+
+}

@@ -1,0 +1,27 @@
+
+public class Ejercicio4 {
+	
+	static int sumarHastaRecursivo(int numero) {
+		if (numero== 0) {
+			return 0;
+		}
+		int suma = numero + sumarHastaRecursivo(numero-1);
+		return suma;
+		
+	}
+	
+	static int sumarHastaRecursivo2(int numero) {
+		if (numero== 0) {
+			return 0;
+		}
+		int suma = numero * sumarHastaRecursivo(numero-1);
+		return suma;
+		
+	}
+
+	public static void main(String[] args) {
+		System.out.println(sumarHastaRecursivo(5));
+	}
+
+
+}

@@ -1,0 +1,12 @@
+
+public class Noo {
+	int valor;
+	Noo izquierdo;
+	Noo derecho;
+	public Noo(int valor) {
+		this.valor=valor;
+		this.izquierdo=null;
+		this.derecho=null;
+		
+	}
+}

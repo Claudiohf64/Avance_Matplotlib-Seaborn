@@ -1,0 +1,14 @@
+
+public class Ejercicio2 {
+	static void decrementarRecursivo(int numero) {
+		if (numero == 0) {
+			return;
+		}
+		decrementarRecursivo(numero-1);
+		System.out.println(numero);
+	}
+	
+	public static void main(String[] args) {
+		decrementarRecursivo(5);
+	}
+}

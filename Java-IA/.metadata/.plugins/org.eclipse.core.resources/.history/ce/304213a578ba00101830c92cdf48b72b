@@ -1,0 +1,20 @@
+
+public class ArbolBinario {
+	Nodo raiz;
+	public ArbolBinario() {
+		raiz = null;
+	}
+	
+	public Nodo insertarRecursivo(Nodo raiz, int valor) {
+		if (raiz == null) {
+			raiz = new Nodo(valor);
+		}
+		if (valor < raiz.valor) {
+			raiz.izquierdo=insertarRecursivo(raiz.izquierdo,valor);
+		}
+		else if(valor > raiz.valor) {
+			raiz.derecho= insertarRecursivo(raiz.derecho, valor);
+		}
+		return raiz;e
+	}
+}

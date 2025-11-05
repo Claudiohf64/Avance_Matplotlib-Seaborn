@@ -1,0 +1,49 @@
+
+public class Ejercicio1 {
+	// EJERCICIO-001
+	static void decrementar(int numero) {
+
+		for (int i = numero; i >= 0; i--) {
+			//System.out.println(i);
+		}
+
+	}
+
+	// EJERCICIO-002
+	static void sumarHasta(int numero) {
+		int suma = 0;
+		for (int i = 0; i <= numero; i++) {
+			suma+=i;
+		}
+		//System.out.println("SUMA "+suma);
+	}
+	
+	// EJERCICIO-003
+	static int sumarHasta2(int numero) {
+		int suma = 0;
+		for (int i = 0; i <= numero; i++) {
+			suma+=i;
+		}
+		return suma;
+	}
+	
+	static int linea(int numero) {
+		int puntos = 0;
+		for (int i = 1; i <= numero; i++) {
+			System.out.print("*");
+		}
+		for (int j = 1; j<= numero; j++) {
+			System.out.print("*");
+		}
+		return puntos;
+	}
+
+	public static void main(String[] args) {
+
+		decrementar(15);
+		sumarHasta(5);
+		linea(5);
+		System.out.println(sumarHasta2(5));
+	}
+
+}

@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+D:\Claudio\Java-IA\.metadata\.plugins\org.eclipse.jdt.core
+892710548.index
+1865797976.index
+3378219731.index

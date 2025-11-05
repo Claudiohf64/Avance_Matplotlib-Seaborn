@@ -1,0 +1,26 @@
+
+public class Ejercicio5 {
+	static void verArray(int[] valores, int i) {
+		if (i==valores.length) {
+			return;
+		}
+		System.out.println(valores[i]);
+		verArray(valores, i+1);
+	}
+	
+	static void verArray2(int[] valores, int i) {
+		if (i==valores.length) {
+			return;
+		}
+		System.out.println(valores[i]);
+		verArray(valores, i+1);
+	}
+	
+	public static void main(String[] args) {
+		
+		int [] [] valores= {{1,2,3,4,5},{2,3,4,6,1};
+		verArray(valores, 0);
+	}
+	
+
+}

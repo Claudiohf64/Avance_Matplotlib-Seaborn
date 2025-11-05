@@ -1,0 +1,17 @@
+
+public class Ejercicio4 {
+	
+	static int sumarHastaRecursivo(int numero) {
+		if (numero== 0) {
+			return 0;
+		}
+		int suma = numero + sumarHastaRecursivo(numero-1);
+		
+		return 0;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(sumarHastaRecursivo(15));
+	}
+
+}

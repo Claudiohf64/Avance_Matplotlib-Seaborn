@@ -1,0 +1,42 @@
+
+public class Ejercicio4 {
+	
+	static int sumarHastaRecursivo(int numero) {
+		if (numero== 0) {
+			return 0;
+		}
+		
+		int suma = numero + sumarHastaRecursivo(numero-1);
+		
+		return suma;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(sumarHastaRecursivo(15));
+	}
+
+	static int sumarHastaRecursivo2(int numero) {
+		if (numero== 0) {
+			return 0;
+		}
+		int numeros= sumarHastaRecursivo(numero-1);
+		int pares = 0;
+		int impares = 0;
+		for (int i = 0; i<= numero;i++) {
+			if (numeros%2==0) {
+				pares += i;
+			}
+			else {
+				impares += i;
+			}
+		}
+		System.out.println("pares" + pares);
+		System.out.println("impares" + impares);
+		
+		return numeros;
+	}
+
+	public static void main2(String[] args) {
+		System.out.println(sumarHastaRecursivo(15));
+	}
+}
