@@ -1,0 +1,98 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class form_iris extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_5;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					form_iris frame = new form_iris();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public form_iris() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 293, 398);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new MigLayout("", "[grow]", "[][][][][][][][][][][][][][]"));
+		
+		lblNewLabel_2 = new JLabel("Ingrese el alto del sepalo");
+		contentPane.add(lblNewLabel_2, "cell 0 0");
+		
+		textField = new JTextField();
+		contentPane.add(textField, "cell 0 1,growx");
+		textField.setColumns(10);
+		
+		lblNewLabel_3 = new JLabel("Ingrese el ancho del sepalo");
+		contentPane.add(lblNewLabel_3, "cell 0 2");
+		
+		textField_1 = new JTextField();
+		contentPane.add(textField_1, "cell 0 3,growx");
+		textField_1.setColumns(10);
+		
+		lblNewLabel_4 = new JLabel("Ingrese el alto del petalo");
+		contentPane.add(lblNewLabel_4, "cell 0 4");
+		
+		textField_2 = new JTextField();
+		contentPane.add(textField_2, "cell 0 5,growx");
+		textField_2.setColumns(10);
+		
+		lblNewLabel_5 = new JLabel("Ingrese el ancho del petalo");
+		contentPane.add(lblNewLabel_5, "cell 0 6");
+		
+		textField_3 = new JTextField();
+		contentPane.add(textField_3, "cell 0 7,growx");
+		textField_3.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Predecir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		contentPane.add(btnNewButton, "flowx,cell 0 9");
+		
+		lblNewLabel = new JLabel("Resultado de prediccion:");
+		contentPane.add(lblNewLabel, "cell 0 11");
+		
+		lblNewLabel_1 = new JLabel("New label");
+		contentPane.add(lblNewLabel_1, "cell 0 12");
+
+	}
+
+}

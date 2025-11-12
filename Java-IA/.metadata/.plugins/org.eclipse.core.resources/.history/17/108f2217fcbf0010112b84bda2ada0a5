@@ -1,0 +1,150 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import weka.classifiers.lazy.IBk;
+import weka.core.DenseInstance;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color; // Importado para el color de error
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class form_iris extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txt_alt_sepalo;
+	private JTextField txt_anch_sepalo;
+	private JTextField txt_alt_petalo;
+	private JTextField txt_anch_petalo;
+	private JLabel predic_result;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					form_iris frame = new form_iris();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public void iris_predic() {
+		try {
+			Instances iris = DataSource.read("iris.arff");
+			int nAttributes = iris.numAttributes();
+
+			iris.setClassIndex(nAttributes - 1);
+			IBk model = new IBk();
+			model.setKNN(3);
+			model.buildClassifier(iris);
+			Instance florNueva = new DenseInstance(iris.numAttributes());
+
+			florNueva.setValue(0, Double.parseDouble(txt_alt_sepalo.getText()));
+			florNueva.setValue(1, Double.parseDouble(txt_anch_sepalo.getText()));
+			florNueva.setValue(2, Double.parseDouble(txt_alt_petalo.getText()));
+			florNueva.setValue(3, Double.parseDouble(txt_anch_petalo.getText()));
+			florNueva.setDataset(iris);
+
+			double index = model.classifyInstance(florNueva);
+			String clase = iris.classAttribute().value((int) index);
+
+			predic_result.setForeground(Color.BLACK);
+			predic_result.setText("Clase: " + clase);
+
+		} catch (NumberFormatException nfe) {
+			predic_result.setForeground(Color.RED);
+			predic_result.setText("Error: Ingrese números válidos en todos los campos.");
+		} catch (Exception e) {
+			predic_result.setForeground(Color.RED);
+			predic_result.setText("Error: No se encontró 'iris.arff' o error de Weka.");
+			e.printStackTrace();
+		}
+	}
+
+	public form_iris() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 397, 300); // Altura ajustada
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 381, 261); // Altura de panel ajustada
+		contentPane.add(panel);
+		panel.setLayout(null);
+
+		JLabel Lb_alt_sepalo = new JLabel("Alto del sepalo");
+		Lb_alt_sepalo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Lb_alt_sepalo.setBounds(10, 11, 137, 25);
+		panel.add(Lb_alt_sepalo);
+
+		JLabel Lb_alt_petalo = new JLabel("Alto del petalo");
+		Lb_alt_petalo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Lb_alt_petalo.setBounds(10, 83, 137, 25);
+		panel.add(Lb_alt_petalo);
+
+		JLabel Lb_anch_sepalo = new JLabel("Ancho del sepalo");
+		Lb_anch_sepalo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Lb_anch_sepalo.setBounds(10, 47, 151, 25);
+		panel.add(Lb_anch_sepalo);
+
+		JLabel Lb_anch_petalo = new JLabel("Ancho del petalo");
+		Lb_anch_petalo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Lb_anch_petalo.setBounds(10, 119, 151, 25);
+		panel.add(Lb_anch_petalo);
+
+		txt_alt_sepalo = new JTextField();
+		txt_alt_sepalo.setBounds(187, 11, 177, 25);
+		panel.add(txt_alt_sepalo);
+		txt_alt_sepalo.setColumns(10);
+
+		txt_anch_sepalo = new JTextField();
+		txt_anch_sepalo.setColumns(10);
+		txt_anch_sepalo.setBounds(187, 47, 177, 25);
+		panel.add(txt_anch_sepalo);
+
+		txt_alt_petalo = new JTextField();
+		txt_alt_petalo.setColumns(10);
+		txt_alt_petalo.setBounds(187, 83, 177, 25);
+		panel.add(txt_alt_petalo);
+
+		txt_anch_petalo = new JTextField();
+		txt_anch_petalo.setColumns(10);
+		txt_anch_petalo.setBounds(187, 119, 177, 25);
+		panel.add(txt_anch_petalo);
+
+		JLabel lblNewLabel_1 = new JLabel("Resultado de prediccion:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(10, 204, 165, 14);
+		panel.add(lblNewLabel_1);
+
+		predic_result = new JLabel("");
+		predic_result.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		predic_result.setBounds(10, 229, 350, 14); // Posición Y ajustada
+		panel.add(predic_result);
+
+		JButton btn_predic = new JButton("Predecir");
+		btn_predic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				iris_predic();
+			}
+		});
+
+		btn_predic.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btn_predic.setBounds(241, 171, 123, 39);
+		panel.add(btn_predic);
+	}
+}

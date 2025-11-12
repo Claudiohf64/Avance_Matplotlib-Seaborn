@@ -1,0 +1,28 @@
+package Ejercicios;
+
+public class Ejercicio1 {
+	// Recursividad con memorizacion
+	static int sumarHAsta(int n) {
+		if (n == 0) {
+			return 0;
+		}
+
+		int suma = n + sumarHAsta(n - 1);
+		return suma;
+	}
+	
+	static int linea(int n) {
+		if (n == 0) {
+			return 0;
+		}
+		
+		System.out.println("*");
+		
+		return n;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(sumarHAsta(5));
+	}
+
+}

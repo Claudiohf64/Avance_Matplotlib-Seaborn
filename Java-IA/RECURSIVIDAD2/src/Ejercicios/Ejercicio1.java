@@ -1,0 +1,35 @@
+package Ejercicios;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Ejercicio1 {
+	// Recursividad con memorizacion
+	static HashMap<Integer, Integer> memoria = new HashMap<Integer, Integer>();
+
+	static int sumarHAsta(int n) {
+		if (n == 0) {
+			return 0;
+		}
+
+		if (memoria.containsKey(n)) {
+			return memoria.get(n);
+		}
+		int suma = n + sumarHAsta(n - 1);
+
+		memoria.put(n, suma);
+		return suma;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(sumarHAsta(5)); //calculo sin memoria
+		System.out.println("Llamada con memoria");
+		System.out.println(sumarHAsta(10)); //las primeras 5 se llama de memoria apartir de 6 se calcula
+		System.out.println("Memoria:");
+		for (Map.Entry<Integer, Integer>memo : memoria.entrySet()) {
+			System.out.println(memo.getKey()+" "+memo.getValue());
+		}
+	}
+	
+
+}

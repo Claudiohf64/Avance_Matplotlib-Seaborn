@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="java.lang.Class">
-		<item key="selection" value="System.out.println(i);"/>
+		<item key="selection" value="&#x09;&#x09;for (Map.Entry&lt;Integer, String&gt; memo : memoria.entrySet()) {"/>
 		<list key="findhistory">
-			<item value="System.out.println(i);"/>
+			<item value="&#x09;&#x09;for (Map.Entry&lt;Integer, String&gt; memo : memoria.entrySet()) {"/>
 		</list>
 	</section>
 </section>

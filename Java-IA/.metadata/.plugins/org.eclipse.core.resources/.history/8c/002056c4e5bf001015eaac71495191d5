@@ -1,0 +1,40 @@
+package Ejercicios;
+
+import weka.classifiers.lazy.IBk;
+import weka.core.DenseInstance;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class Ejercicio2 {
+
+	public static void main(String[] args) {
+		try {
+			Instances iris = DataSource.read("iris.arff");// CARGAMOS EL DATASET (LECTURA)
+			int nInstances = iris.numInstances();// OBTENEMOS LA CANTIDAD DE REGISTROS
+			int nAttributes = iris.numAttributes();// CANTIDAD DE COLUMNAS (CONTANDO CON EL TARGET)
+			iris.setClassIndex(nAttributes-1); //ESTABLECER EL OBJETIVO (ULTIMA COLUMNA) TARGET
+			IBk model = new IBk(); //DEFINIMOS NUESTRO MODELO (K VECINOS)
+			model.setKNN(3);// ESTABLECEMOS NUESTRO HIPERPARAMETRO (3 VECINOS)
+			model.buildClassifier(iris);//COMPILAMOS EL MODELO CONSTRUCTIVO
+			
+			//6.9,3.1,5.4,2.1,Iris-virginica
+			//Definimos una muestra para la clasificación (Predicción)
+			Instance florNueva= new DenseInstance(iris.numAttributes());
+			florNueva.setValue(0, 6.9);
+			florNueva.setValue(1, 3.1);
+			florNueva.setValue(2, 5.4);
+			florNueva.setValue(3, 2.1);
+			florNueva.setDataset(iris);
+			
+			//Ejecutamos el modelo (predict)
+			double index = model.classifyInstance(florNueva);
+			String clase = iris.classAttribute().value((int) index);
+			System.out.println(index);
+			System.out.println(index);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}

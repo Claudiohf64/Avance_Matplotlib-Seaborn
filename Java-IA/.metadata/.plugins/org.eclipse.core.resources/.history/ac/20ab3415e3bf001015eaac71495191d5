@@ -1,0 +1,14 @@
+package Ejercicios;
+
+public class Ejercicio1 {
+
+	public static void main(String[] args) {
+		//Analisis exploratiorio iris weka
+		try {
+			Instance iris = DataSource.read("iris.arff");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}

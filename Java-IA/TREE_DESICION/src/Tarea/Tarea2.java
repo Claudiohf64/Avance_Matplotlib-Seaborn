@@ -1,0 +1,76 @@
+package Tarea;
+
+import java.util.Scanner;
+
+import weka.classifiers.lazy.IBk;
+import weka.core.DenseInstance;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class Tarea2 {
+
+	public static void main(String[] args) {
+		try {
+			Scanner scn = new Scanner(System.in);
+			Instances wine = DataSource.read("wine.arff");
+			int nAttributes = wine.numAttributes();
+			int nInstances = wine.numInstances();
+			wine.setClassIndex(nAttributes-1);
+			
+			IBk model = new IBk();
+			model.setKNN(3);
+			model.buildClassifier(wine);
+			
+			Instance vinoNuevo = new DenseInstance(wine.numAttributes());
+			System.out.println("Ingrese la cantidad de alcohol: ");
+			double c_alco =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de acido malico: ");
+			double c_acm =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de Ceniza: ");
+			double c_cen =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de alcalinidad de las cenizas: ");
+			int c_alce =scn.nextInt();
+			System.out.println("Ingrese la cantidad de magnesio: ");
+			int c_mg =scn.nextInt();
+			System.out.println("Ingrese la cantidad de fenoles totales: ");
+			double c_ft =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de flavanoides: ");
+			double c_fla =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de fenoles no flavanoides: ");
+			double c_fnf =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de proantocianinas: ");
+			double c_pro =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de Intensidad del color: ");
+			double c_idc =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de Tono: ");
+			double c_ton =scn.nextDouble();
+			System.out.println("Ingrese el valor de DO280_DO315: ");
+			double c_do2 =scn.nextDouble();
+			System.out.println("Ingrese la cantidad de Prolina: ");
+			int c_prol =scn.nextInt();
+			vinoNuevo.setValue(0, c_alco);
+			vinoNuevo.setValue(1, c_acm);
+			vinoNuevo.setValue(2, c_cen);
+			vinoNuevo.setValue(3, c_alce);
+			vinoNuevo.setValue(4, c_mg);
+			vinoNuevo.setValue(5, c_ft);
+			vinoNuevo.setValue(6, c_fla);
+			vinoNuevo.setValue(7, c_fnf);
+			vinoNuevo.setValue(8, c_pro);
+			vinoNuevo.setValue(9, c_idc);
+			vinoNuevo.setValue(10, c_ton);
+			vinoNuevo.setValue(11, c_do2);
+			vinoNuevo.setValue(12, c_prol);
+			vinoNuevo.setDataset(wine);
+			
+			double index = model.classifyInstance(vinoNuevo);
+			String clase = wine.classAttribute().value((int)index);
+			System.out.println(clase);
+			System.out.println(index);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}

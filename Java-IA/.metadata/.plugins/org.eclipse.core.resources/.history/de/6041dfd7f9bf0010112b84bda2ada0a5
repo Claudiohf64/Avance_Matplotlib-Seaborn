@@ -1,0 +1,52 @@
+package Tarea;
+
+import java.util.Scanner;
+
+import weka.classifiers.lazy.IBk;
+import weka.core.DenseInstance;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class Tarea2 {
+
+	public static void main(String[] args) {
+		try {
+			Scanner scn = new Scanner(System.in);
+			// PROBAR CON OTROS REGISTRO (INGRESAR LOS DATOS POR TECLADO)
+			Instances iris = DataSource.read("wine.arff");// CARGAMOS EL DATASET (LECTURA)
+			int nInstances = iris.numInstances();// OBTENEMOS LA CANTIDAD DE REGISTROS
+			int nAttributes = iris.numAttributes();// CANTIDAD DE COLUMNAS (CONTANDO CON EL TARGET)
+			iris.setClassIndex(nAttributes - 1); // ESTABLECER EL OBJETIVO (ULTIMA COLUMNA) TARGET
+			IBk model = new IBk(); // DEFINIMOS NUESTRO MODELO (K VECINOS)
+			model.setKNN(3);// ESTABLECEMOS NUESTRO HIPERPARAMETRO (3 VECINOS)
+			model.buildClassifier(iris);// COMPILAMOS EL MODELO CONSTRUCTIVO
+
+			// 6.9,3.1,5.4,2.1,Iris-virginica
+			// Definimos una muestra para la clasificación (Predicción)
+			Instance florNueva = new DenseInstance(iris.numAttributes());
+			System.out.println("Ingrese el alto del sepalo");
+			double sepal_alto = scn.nextDouble();
+			System.out.println("Ingrese el ancho del sepalo");
+			double sepal_ancho = scn.nextDouble();
+			System.out.println("Ingrese el alto del petalo");
+			double petal_alto = scn.nextDouble();
+			System.out.println("Ingrese el ancho del petalo");
+			double petal_ancho = scn.nextDouble();
+			florNueva.setValue(0,sepal_alto);
+			florNueva.setValue(1,sepal_ancho);
+			florNueva.setValue(2, petal_alto);
+			florNueva.setValue(3, petal_ancho);
+			florNueva.setDataset(iris);
+			
+			// Ejecutamos el modelo (predict)
+			double index = model.classifyInstance(florNueva);
+			String clase = iris.classAttribute().value((int) index);
+			System.out.println(clase);
+			System.out.println(index);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}

@@ -1,0 +1,30 @@
+package Tareas;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Tarea1 {
+	// Recursividad con memorizacion
+	static HashMap<Integer, String> memoria = new HashMap<Integer, String>();
+
+	static String linea(int n) {
+		if (n == 0) {
+			return "";
+		}
+
+		if (memoria.containsKey(n)) {
+			return memoria.get(n);
+		}
+		String linea = "*";
+
+		memoria.put(n, linea);
+		return linea;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(linea(5));
+		for (Map.Entry<Integer, String> memo : memoria.entrySet()) {
+			System.out.println(memo.getKey() + " " + memo.getValue());
+		}
+	}
+}

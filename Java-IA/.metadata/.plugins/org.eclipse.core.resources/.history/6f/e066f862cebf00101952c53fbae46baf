@@ -1,0 +1,29 @@
+package Ejercicios;
+
+import java.util.HashMap;
+
+public class Ejercicio1 {
+	// Recursividad con memorizacion
+	static HashMap<Integer, Integer> memoria = new HashMap<Integer, Integer>();
+
+	static int sumarHAsta(int n) {
+		if (n == 0) {
+			return 0;
+		}
+
+		if (memoria.containsKey(n)) {
+			return memoria.get(n);
+		}
+		int suma = n + sumarHAsta(n - 1);
+
+		memoria.put(n, suma);
+		return suma;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(sumarHAsta(5)); //calculo sin memoria
+		System.out.println("Llamada con memoria");
+		System.out.println(sumarHAsta(5)); //lo llama desde la memoria
+	}
+
+}

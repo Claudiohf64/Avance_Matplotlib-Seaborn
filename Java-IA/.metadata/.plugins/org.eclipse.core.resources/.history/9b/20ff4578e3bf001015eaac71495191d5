@@ -1,0 +1,25 @@
+package Ejercicios;
+
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class Ejercicio1 {
+
+	public static void main(String[] args) {
+		//Analisis exploratiorio iris weka
+		try {
+			Instances iris = DataSource.read("iris.arff");
+			int nInstances = iris.numInstances();
+			int nAtributes = iris.numAttributes();
+			System.out.println("Cantidad de muestras: " + nInstances);
+			System.out.println("Cantidad de atributos: " + nAtributes);
+			for(int i = 0; i  < iris.numInstances(); i++) {
+				System.out.println(iris.instance(i));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}

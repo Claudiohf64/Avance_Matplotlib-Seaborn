@@ -1,0 +1,17 @@
+package Ejercicios;
+
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class Ejercicio2 {
+
+	public static void main(String[] args) {
+		try {
+			Instances iris = DataSource.read("iris.arff");// CARGAMOS EL DATASET (LECTURA)
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}

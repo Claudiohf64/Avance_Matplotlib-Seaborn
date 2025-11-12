@@ -1,0 +1,30 @@
+package Tareas;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Tarea2 {
+	static HashMap<Integer, String> memoria = new HashMap<Integer, String>();
+
+	static String tabla(int n1,int n2) {
+		if (n2 == 0) {
+			return "";
+		}
+
+		if (memoria.containsKey(n2)) {
+			return memoria.get(n2);
+		}
+		tabla(n1,n2-1);
+		String mult = n1+"*"+n2+" = " + (n1*n2);
+		memoria.put(n2, mult);
+		System.out.println(mult);
+		return mult;
+	}
+
+	public static void main(String[] args) {
+		tabla(5,25);
+		for (Map.Entry<Integer, String> memo : memoria.entrySet()) {
+			System.out.println(memo.getKey() + " " + memo.getValue());
+		}
+	}
+}
