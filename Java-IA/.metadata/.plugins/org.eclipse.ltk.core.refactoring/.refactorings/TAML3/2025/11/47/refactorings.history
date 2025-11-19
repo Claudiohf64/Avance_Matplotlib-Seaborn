@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Ejercicios.DSUtol&apos; to &apos;DSUtil&apos;&#x0D;&#x0A;- Original project: &apos;TAML3&apos;&#x0D;&#x0A;- Original element: &apos;Ejercicios.DSUtol&apos;&#x0D;&#x0A;- Renamed element: &apos;Ejercicios.DSUtil&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;DSUtol&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;Ejercicios{DSUtol.java[DSUtol" matchStrategy="1" name="DSUtil" qualified="false" references="true" similarDeclarations="false" stamp="1763578188840" textual="false" version="1.0"/>
+</session>

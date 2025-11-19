@@ -1,0 +1,26 @@
+package Ejercicios;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Ejercicio1 {
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://localhost/colegio";
+		String user = "root";
+		String password = "";
+		try {
+			//1 Enlace a la DB y ejecucion de la consulta
+			Connection cn = DriverManager.getConnection(url,user,password);
+			String sql = "select edad,asistencia,promedio,conducta,apoyo_familiar,abandono from estudiantes_riesgo";
+			PreparedStatement ps = cn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();//Los datos de la tabla ya se encuentran en el resulset
+			//2 Armamos el esqueleto del dataset
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+}

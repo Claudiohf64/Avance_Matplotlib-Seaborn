@@ -1,0 +1,132 @@
+package Tareas;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import weka.core.Attribute;
+import weka.core.DenseInstance;
+import weka.core.Instance;
+import weka.core.Instances;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class Form1 extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTable grilla;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Form1 frame = new Form1();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Form1() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 519, 465);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 503, 426);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 293, 197);
+		panel.add(scrollPane);
+		
+		grilla = new JTable();
+		scrollPane.setViewportView(grilla);
+		colegio(); 
+	}
+	public void colegio() {
+		String url = "jdbc:mysql://localhost/colegio";
+		String user = "root";
+		String password = "";
+		try {
+			Connection cn = DriverManager.getConnection(url, user, password);
+			String sql = "select edad,asistencia,promedio,conducta,apoyo_familiar,abandono from estudiantes_riesgo";
+			PreparedStatement ps = cn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			DefaultTableModel model = new DefaultTableModel(null,new String[] {"edad","asistencia","promedio","conducta","apoyo_familiar","abandono"});
+			
+			ArrayList<Attribute> atributos = new ArrayList<Attribute>();
+			atributos.add(new Attribute("edad"));
+			atributos.add(new Attribute("asistencia"));
+			atributos.add(new Attribute("promedio"));
+			
+			ArrayList<String> valoresConducta = new ArrayList<String>();
+			valoresConducta.add("buena");
+			valoresConducta.add("regular");
+			valoresConducta.add("mala");
+			atributos.add(new Attribute("conducta", valoresConducta));
+			
+			ArrayList<String> valoresApoyo_f = new ArrayList<String>();
+			valoresApoyo_f.add("si");
+			valoresApoyo_f.add("no");
+			atributos.add(new Attribute("apoyo_familiar", valoresApoyo_f));
+
+			ArrayList<String> valoresAbandono = new ArrayList<String>();
+			valoresAbandono.add("si");
+			valoresAbandono.add("no");
+			atributos.add(new Attribute("abandono", valoresAbandono));
+			
+			Instances data = new Instances("dataset",atributos,0);
+			data.setClassIndex(data.numAttributes()-1);
+			
+			while (rs.next()) {
+				Instance instance = new DenseInstance(data.numAttributes());
+				instance.setValue(atributos.get(0), rs.getInt("edad"));
+				instance.setValue(atributos.get(1), rs.getInt("asistencia"));
+				instance.setValue(atributos.get(2), rs.getDouble("promedio"));
+				instance.setValue(atributos.get(3), rs.getString("conducta"));
+				instance.setValue(atributos.get(4), rs.getString("apoyo_familiar"));
+				instance.setValue(atributos.get(5), rs.getString("abandono"));
+				instance.setDataset(data);
+				data.add(instance);
+			}
+			
+			while (rs.next()) {
+				model.addRow(new Object[] {
+						data.get(2)
+				});
+			}
+			grilla.setModel(model);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

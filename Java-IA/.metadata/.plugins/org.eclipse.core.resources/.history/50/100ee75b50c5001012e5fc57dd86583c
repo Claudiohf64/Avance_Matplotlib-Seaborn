@@ -1,0 +1,61 @@
+package Ejercicios;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import weka.core.Attribute;
+
+public class Ejercicio1 {
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://localhost/colegio";
+		String user = "root";
+		String password = "";
+		try {
+			//1 Enlace a la DB y ejecucion de la consulta
+			Connection cn = DriverManager.getConnection(url,user,password);
+			String sql = "select edad,asistencia,promedio,conducta,apoyo_familiar,abandono from estudiantes_riesgo";
+			PreparedStatement ps = cn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();//Los datos de la tabla ya se encuentran en el resulset
+			System.out.println("CONECTADO");
+			//2 Armamos el esqueleto del dataset
+			ArrayList<Attribute> atributos = new ArrayList<Attribute>();
+			//2.1 Definimos columnas
+			atributos.add(new Attribute("edad"));
+			atributos.add(new Attribute("asistencia"));
+			atributos.add(new Attribute("promedio"));
+			
+			atributos.add(new Attribute("conducta"));
+			atributos.add(new Attribute("apoyo_familiar"));
+			
+			atributos.add(new Attribute("abandono"));
+			
+			//NOTA: One_hot_encoder de conducta
+			ArrayList<String> valoresConducta = new ArrayList<String>();
+			valoresConducta.add("buena");
+			valoresConducta.add("regular");
+			valoresConducta.add("mala");
+			atributos.add(new Attribute("conducta", valoresConducta));
+			
+			//NOTA: ONE_HOT_ENCODER DE APOYO_FAMILIAR
+			ArrayList<String> valoresApoyo_f = new ArrayList<String>();
+			valoresConducta.add("si");
+			valoresConducta.add("so");
+			atributos.add(new Attribute("Apoyo_Familiar", valoresConducta));
+
+			//NOTA: ONE_HOT_ENCODER DE ABANDONO
+			ArrayList<String> valoresAbandono = new ArrayList<String>();
+			valoresConducta.add("si");
+			valoresConducta.add("no");
+			atributos.add(new Attribute("Abandono", valoresConducta));
+			
+		} catch (SQLException e) {
+			System.out.println("ERROR EN LA CONEXION");
+			e.printStackTrace();
+		}
+		
+	}
+}

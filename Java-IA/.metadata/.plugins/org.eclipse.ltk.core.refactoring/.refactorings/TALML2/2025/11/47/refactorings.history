@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Tareas.Form&apos; to &apos;Form1&apos;&#x0D;&#x0A;- Original project: &apos;TALML2&apos;&#x0D;&#x0A;- Original element: &apos;Tareas.Form&apos;&#x0D;&#x0A;- Renamed element: &apos;Tareas.Form1&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Form&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;Tareas{Form.java[Form" matchStrategy="1" name="Form1" qualified="false" references="true" similarDeclarations="false" stamp="1763564695480" textual="false" version="1.0"/>
+</session>

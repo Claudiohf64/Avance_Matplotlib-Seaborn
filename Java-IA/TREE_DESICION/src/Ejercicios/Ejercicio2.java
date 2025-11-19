@@ -10,6 +10,7 @@ public class Ejercicio2 {
 
 	public static void main(String[] args) {
 		try {
+			
 			//PROBAR CON OTROS REGISTRO (INGRESAR LOS DATOS POR TECLADO)
 			Instances iris = DataSource.read("iris.arff");// CARGAMOS EL DATASET (LECTURA)
 			int nInstances = iris.numInstances();// OBTENEMOS LA CANTIDAD DE REGISTROS
@@ -33,9 +34,13 @@ public class Ejercicio2 {
 			String clase = iris.classAttribute().value((int) index);
 			System.out.println(clase);
 			System.out.println(index);
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
+
 	}
 
 }
+
+

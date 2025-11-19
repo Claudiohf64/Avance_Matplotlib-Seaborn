@@ -1,0 +1,18 @@
+@relation dataset
+
+@attribute edad numeric
+@attribute asistencia numeric
+@attribute promedio numeric
+@attribute conducta {buena,regular,mala}
+@attribute apoyo_familiar {si,no}
+@attribute abandono {si,no}
+
+@data
+16,85,14.2,buena,si,no
+17,60,11.5,regular,no,si
+18,92,16.8,buena,si,no
+17,45,10,mala,no,si
+16,70,12.6,regular,si,no
+19,30,9.8,mala,no,si
+18,78,13.9,buena,si,no
+17,55,10.2,mala,no,si

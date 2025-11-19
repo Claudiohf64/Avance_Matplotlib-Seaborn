@@ -1,0 +1,34 @@
+package Ejercicios;
+
+import weka.classifiers.trees.J48;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class Arbol {
+    public static void main(String[] args) {
+        try {
+            new DSUtil().crearDataset();
+            Instances data = DataSource.read("data.arff");
+
+            // Establecer la variable objetivo
+            data.setClassIndex(data.numAttributes() - 1);
+
+            //Crear y entrenar el modelo J48
+            J48 tree = new J48();
+            tree.buildClassifier(data);
+
+            System.out.println(tree);
+
+            //Realizar una prediccion
+            Instance nuevo = data.firstInstance();
+            double prediccion = tree.classifyInstance(nuevo);
+            String clasePredicha = data.classAttribute().value((int) prediccion);
+
+            System.out.println("Predicción para el primer registro: " + clasePredicha);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

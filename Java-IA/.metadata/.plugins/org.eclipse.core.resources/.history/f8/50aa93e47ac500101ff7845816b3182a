@@ -1,0 +1,17 @@
+package Ejercicios;
+
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class Arbol {
+	public static void main(String[] args) throws Exception {
+		new DSUtil().crearDataset();
+		Instances data = DataSource.read("data.arff");
+		//establecer variable objetivo
+		
+		//crear el modelo J48
+		
+		//realizar una predicción
+
+	}
+}
